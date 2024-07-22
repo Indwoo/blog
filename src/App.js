@@ -1,12 +1,12 @@
-import logo from './logo.svg';
 import './App.css';
 
 function App() {
   return (
     <div className="App">
-      <div>
+      <div className = "black-nav">
         <h4>인두</h4>
       </div>
+      <h4></h4>
     </div>
   );
 }
