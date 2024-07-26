@@ -7,6 +7,7 @@ function App() {
   let [글제목, 제목변경] = useState(['남자 코트 추천', '강남 우동 맛집', '파이썬 독학']);
   let [추천, 추천증가] = useState([0, 0, 0]);
   let [modal, setModal] = useState(false);
+  let [모달제목, 모달제목변경] = useState(2);
 
   return (
     <div className="App">
@@ -44,7 +45,7 @@ function App() {
       {글제목.map(function (a, i) {
         return (
           <div className='list' key={i}>
-            <h4 onClick={() => { modal ? setModal(false) : setModal(true) }}>
+            <h4 onClick={() => { modal ? setModal(false) : setModal(true); 모달제목변경(i) }}>
               {글제목[i]}
             </h4>
             <span onClick={() => {
@@ -59,8 +60,11 @@ function App() {
       })
       }
 
+      <button onClick={()=> {모달제목변경(0)}}>글제목0</button>
+      <button onClick={()=> {모달제목변경(1)}}>글제목1</button>
+      <button onClick={()=> {모달제목변경(2)}}>글제목2</button>
       {
-        modal ? <Modal 글제목={글제목} 제목변경={제목변경} /> : null
+        modal ? <Modal 모달제목 = {모달제목} 글제목={글제목} 제목변경={제목변경} /> : null
       }
 
       <h4>{post}</h4>
@@ -72,11 +76,10 @@ function Modal(props) {
   return (
     <>
       <div className='modal'>
-        <h4>{props.글제목}</h4>
+        <h4>{props.글제목[props.모달제목]}</h4>
         <p>날짜</p>
         <p>상세내용</p>
-        <button onClick={() => { props.제목변경(['여자 코트 추천', '강남 우동 맛집', '파이썬 독학']) }}>
-          제목변경</button>
+        <button>제목변경</button>
       </div>
     </>
   )
